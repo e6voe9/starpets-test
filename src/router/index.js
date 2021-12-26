@@ -19,12 +19,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
   },
   {
-    path: '/404',
-    name: '404',
+    path: '/not-found',
+    name: 'not-found',
     component: () => import(/* webpackChunkName: "notfound" */ '@/views/NotFound.vue'),
   }, {
     path: '*',
-    redirect: '/404'
+    redirect: '/not-found'
   }
 ]
 
