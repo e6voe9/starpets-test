@@ -5,10 +5,33 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+
+    <div class="todos">
+      <div class="todos__item" v-for="todo in getTodos" :key="todo.id">
+        {{ todo.txt }}
+      </div>
+    </div>
   </div>
 </template>
 
+<script>
+import {mapGetters} from 'vuex'
+
+export default {
+  name: 'app',
+  computed: mapGetters(['getTodos'])
+}
+</script>
+
 <style lang="scss">
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  font-size: 24px;
+}
 #app {
   font-family: monospace;
   -webkit-font-smoothing: antialiased;
@@ -29,4 +52,15 @@
     }
   }
 }
+.todos{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 100px;
+
+  &__item{
+    display: inline-block;
+    background: #ccc;
+  }
+}
+
 </style>
