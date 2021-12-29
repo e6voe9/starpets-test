@@ -1,48 +1,31 @@
 <template>
   <div id="app">
-    <FixedNav />
+    <FixedNav>
+      <NavList :class="'fixed-nav__nav-list'" :links="getNavLinks" />
+    </FixedNav>
     <main class="main">
-      <router-view/>
+      <router-view />
     </main>
-
-
-    <!-- <div class="todos">
-      <div class="todos__item" v-for="todo in getTodos" :key="todo.id">
-        <b>{{ todo.id }}</b><br>
-        <p>{{todo.title}}</p>
-        <p>Completed: 
-          <span v-if="todo.completed">+</span>
-          <span v-else>-</span>  
-        </p>
-      </div>
-    </div>
-    <button @click="incrementTodosCount">Load 3 more from API</button> -->
   </div>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex';
-import FixedNav from './components/FixedNav/FixedNav';
+import { createNamespacedHelpers } from "vuex";
+import FixedNav from "./components/FixedNav/FixedNav";
+import NavList from "./components/NavList/NavList";
 
-const { mapGetters, mapActions, mapState } = createNamespacedHelpers('todos');
+const navlinksHelper = createNamespacedHelpers("navlinks");
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    FixedNav
+    FixedNav,
+    NavList,
   },
   computed: {
-    ...mapGetters(['getTodos']),
-    ...mapState({
-      todosCount: 'todosCount'
-    })
+    ...navlinksHelper.mapGetters(["getNavLinks"]),
   },
-  methods: mapActions(['fetchTodos', 'incrementTodosCount']),
-
-  async mounted() {
-    this.fetchTodos(this.todosCount);
-  }
-}
+};
 </script>
 
 <style lang="scss">
@@ -53,28 +36,31 @@ export default {
   font-style: normal;
   font-display: swap;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-a{
+a {
   color: inherit;
   text-decoration: none;
 }
-button{
+button {
   cursor: pointer;
   background: none;
   border: none;
 }
-button, input{
+button,
+input {
   font-family: inherit;
 }
-ul,li,ol{
+ul,
+li,
+ol {
   list-style-type: none;
 }
 #app {
-  font-family: 'RussoOne', sans-serif;
+  font-family: "RussoOne", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -82,37 +68,7 @@ ul,li,ol{
   padding: 0 40px;
 }
 
-.main{
+.main {
   padding-top: 100px;
 }
-
-.todos{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 20px;
-  row-gap: 20px;
-
-  &__item{
-    display: inline-block;
-    background: #ccc;
-    padding: 30px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    text-align: left;
-
-    b, p{
-      margin-bottom: 15px;
-    }
-    p{
-      &:last-child{
-        margin-bottom: 0;
-        color: darkmagenta;
-      }
-    }
-  }
-}
-
 </style>

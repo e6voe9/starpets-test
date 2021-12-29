@@ -1,21 +1,12 @@
 <template>
   <div class="fixed-nav">
-    <NavList :class="'fixed-nav__nav-list'" :links="getNavLinks"/>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import NavList from './../NavList/NavList';
-import { createNamespacedHelpers } from 'vuex';
-
-const { mapGetters } = createNamespacedHelpers('navlinks');
-
 export default {
   name: 'FixedNav',
-  components: {
-    NavList
-  },
-  computed: mapGetters(['getNavLinks'])
 }
 </script>
 
@@ -31,8 +22,5 @@ export default {
   background: #fff;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
-  &__nav-list {
-  }
 }
-
 </style>
