@@ -1,20 +1,31 @@
 <template>
   <div class="todos">
+    <form @submit.prevent="addTodoHandler" class="todos__form">
+      <label class="todos__label">
+        <b-input
+          @input.native="inputTodoHandler"
+          :class="'todos__b-input'"
+          :placeholder="'Write your task'"
+          :value="getInputTodoValue"
+        />
+      </label>
+      <b-btn type="submit">Add</b-btn>
+    </form>
     <div class="todos__list">
-      <div
-        class="todos__item"
-        :class="{
-          'todos__item--active': todo.completed,
-        }"
-        v-for="todo in getTodos"
-        :key="todo.id"
-      >
-        <b>{{ todo.id }}</b
-        ><br />
-        <p>{{ todo.title }}</p>
-      </div>
+      <transition-group name="list-complete" tag="div">
+        <div
+          class="todos__item list-complete-item"
+          :class="{
+            'todos__item--active': todo.completed,
+          }"
+          v-for="todo in getTodos"
+          :key="todo.id"
+        >
+          {{ todo.title }}
+        </div>
+      </transition-group>
     </div>
-    <LoadMoreBtn @click.native="incrementTodosCount">Load More</LoadMoreBtn>
+    <b-btn @click.native="incrementTodosCount">Load More from API</b-btn>
   </div>
 </template>
 
@@ -22,19 +33,26 @@
 import { createNamespacedHelpers } from "vuex";
 const todosHelper = createNamespacedHelpers("todos");
 
-import LoadMoreBtn from "@/components/LoadMoreBtn/LoadMoreBtn";
+import BBtn from "@/components/BBtn/BBtn";
+import BInput from "../BInput/BInput.vue";
 
 export default {
   name: "TodoList",
   components: {
-    LoadMoreBtn,
+    BBtn,
+    BInput,
   },
   computed: {
-    ...todosHelper.mapGetters(["getTodos"]),
+    ...todosHelper.mapGetters(["getTodos", "getInputTodoValue"]),
     ...todosHelper.mapState({ todosCount: "todosCount" }),
   },
   methods: {
-    ...todosHelper.mapActions(["fetchTodos", "incrementTodosCount"]),
+    ...todosHelper.mapActions([
+      "fetchTodos",
+      "incrementTodosCount",
+      "inputTodoHandler",
+      "addTodoHandler",
+    ]),
   },
 
   async mounted() {
@@ -47,16 +65,22 @@ export default {
 .todos {
   width: 100%;
   max-width: 700px;
-  padding: 40px 0;
+  padding: 40px 30px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   &__list {
     margin-bottom: 30px;
   }
 
+  &__label {
+    margin-bottom: 15px;
+    display: block;
+  }
+
   &__item {
     display: inline-block;
-    background: #ccc;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -65,18 +89,28 @@ export default {
     margin-bottom: 20px;
 
     &--active {
-      border: 5px solid #42b983;
+      color: #42b983;
+      text-decoration: line-through;
+      opacity: 0.5;
     }
 
-    b,
-    p {
-      margin-bottom: 15px;
-    }
     p {
       &:last-child {
         margin-bottom: 0;
       }
     }
   }
+}
+
+.list-complete-enter,
+.list-complete-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+.list-complete-item {
+  transition: all 500ms;
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
-  <button class="load-more-btn">
+  <button class="b-btn">
     <slot />
   </button>
 </template>
 
 <script>
 export default {
-  name: "LoadMoreBtn",
+  name: "BBtn",
 };
 </script>
 
 <style lang="scss">
-.load-more-btn {
+.b-btn {
   border-radius: 10px;
   padding: 8px 16px;
   background: #fff;
