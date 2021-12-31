@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <fixed-nav :position="'top-right'">
-      <button @click="setLocale('ru')">русский</button> |
-      <button @click="setLocale('en')">английский</button>
+      <b-btn @click.native="setLocale('ru')">русский</b-btn> |
+      <b-btn @click.native="setLocale('en')">английский</b-btn>
     </fixed-nav>
     <fixed-nav :position="'top-center'">
       <nav-list :class="'fixed-nav__nav-list'" />
@@ -17,6 +17,7 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
+import BBtn from "./components/BBtn/BBtn.vue";
 import FixedNav from "./components/FixedNav/FixedNav";
 import NavList from "./components/NavList/NavList";
 
@@ -28,7 +29,9 @@ export default {
   components: {
     FixedNav,
     NavList,
+    BBtn,
   },
+
   computed: {
     ...todosHelper.mapState({ todosCount: "todosCount" }),
   },
