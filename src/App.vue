@@ -17,6 +17,7 @@ import FixedNav from "./components/FixedNav/FixedNav";
 import NavList from "./components/NavList/NavList";
 
 const navlinksHelper = createNamespacedHelpers("navlinks");
+const todosHelper = createNamespacedHelpers("todos");
 
 export default {
   name: "app",
@@ -26,6 +27,14 @@ export default {
   },
   computed: {
     ...navlinksHelper.mapGetters(["getNavLinks"]),
+    ...todosHelper.mapState({ todosCount: "todosCount" }),
+  },
+  methods: {
+    ...todosHelper.mapActions(["fetchTodos"]),
+  },
+
+  async mounted() {
+    this.fetchTodos(this.todosCount);
   },
 };
 </script>
