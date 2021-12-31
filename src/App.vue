@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <FixedNav>
+    <FixedNav :position="'top-center'">
       <NavList :class="'fixed-nav__nav-list'" :links="getNavLinks" />
     </FixedNav>
     <main class="main">
