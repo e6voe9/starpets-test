@@ -47,7 +47,7 @@ export default {
       const value = e.target.value;
       commit('updateTodoInputValue', value)
     },
-    addTodoHandler({ commit, getters, dispatch }) {
+    addTodoHandler({ commit, getters, dispatch, rootState }) {
       const value = getters.getInputTodoValue.trim()
       if (value === '') {
         dispatch('clearInputTodoValue')
@@ -55,7 +55,7 @@ export default {
       }
 
       const newTodo = {
-        userId: 1,
+        userId: rootState.user.data.id,
         id: getters.getTheBiggestId + 1,
         title: value,
         completed: false

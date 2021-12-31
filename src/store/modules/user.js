@@ -10,13 +10,14 @@ export default {
   },
   actions: {
     async fetchUserData({ commit }) {
-      const data = await fetch(`https://jsonplaceholder.typicode.com/users/1`)
+      const data = await fetch(`https://jsonplaceholder.typicode.com/users/6`)
         .then(response => response.json())
       commit('updateUserData', data)
     },
   },
   getters: {
     getUserData(state) {
+      console.log(state.data);
       return state.data
     }
   }

@@ -18,6 +18,7 @@ import NavList from "./components/NavList/NavList";
 
 const navlinksHelper = createNamespacedHelpers("navlinks");
 const todosHelper = createNamespacedHelpers("todos");
+const userHelper = createNamespacedHelpers("user");
 
 export default {
   name: "app",
@@ -31,10 +32,12 @@ export default {
   },
   methods: {
     ...todosHelper.mapActions(["fetchTodos"]),
+    ...userHelper.mapActions(["fetchUserData"]),
   },
 
   async mounted() {
     this.fetchTodos(this.todosCount);
+    this.fetchUserData();
   },
 };
 </script>
@@ -80,6 +83,9 @@ ol {
 }
 
 .main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 700px;
   padding-top: 100px;
 }
 

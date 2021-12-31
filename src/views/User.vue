@@ -3,14 +3,17 @@
     <div class="user__header">
       <b-heading :class="['user__b-heading']">User page</b-heading>
     </div>
-    <div class="user__body"></div>
+    <div class="user__body">
+      <user-info-table />
+    </div>
   </div>
 </template>
 
 <script>
 import BHeading from "../components/BHeading/BHeading.vue";
+import UserInfoTable from "../components/UserInfoTable/UserInfoTable.vue";
 export default {
-  components: { BHeading },
+  components: { BHeading, UserInfoTable },
   name: "User",
 };
 </script>
