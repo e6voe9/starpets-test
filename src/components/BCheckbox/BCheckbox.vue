@@ -16,6 +16,24 @@ export default {
 .b-checkbox {
   position: relative;
   cursor: pointer;
+
+  &:hover {
+    .b-checkbox {
+      &__checkbox-square {
+        &::after {
+          transform: translate(-50%, -50%) scale(0.4);
+        }
+      }
+    }
+  }
+  &:active {
+    .b-checkbox {
+      &__checkbox-square {
+        background: #e2f3eb;
+      }
+    }
+  }
+
   &__checkbox {
     position: absolute;
     pointer-events: none;
@@ -30,6 +48,14 @@ export default {
         }
       }
     }
+
+    &:focus {
+      ~ .b-checkbox {
+        &__checkbox-square {
+          background: #e2f3eb;
+        }
+      }
+    }
   }
 
   &__checkbox-square {
@@ -39,6 +65,7 @@ export default {
     border: 2px solid #42b983;
     border-radius: 3px;
     position: relative;
+    background: #fff;
 
     &::after {
       content: "";

@@ -29,11 +29,13 @@ export default {
   color: var(--clr);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: background 150ms ease-in-out;
+  outline: none;
 
   &:hover {
     background: var(--bg-hover);
   }
-  &:active {
+  &:active,
+  &:focus {
     transition: background 0 ease-in-out;
     background: var(--bg-active);
   }
