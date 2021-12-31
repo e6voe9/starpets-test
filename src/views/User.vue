@@ -1,7 +1,9 @@
 <template>
   <div class="user">
     <div class="user__header">
-      <b-heading :class="['user__b-heading']">User page</b-heading>
+      <b-heading :class="['user__b-heading']">{{
+        $t("pageHeadings.user")
+      }}</b-heading>
     </div>
     <div class="user__body">
       <user-info-table />

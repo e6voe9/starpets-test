@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <b-heading :class="['home__b-heading']">Home page</b-heading>
+    <b-heading :class="['home__b-heading']">{{
+      $t("pageHeadings.home")
+    }}</b-heading>
     <todo-list />
   </div>
 </template>

@@ -14,9 +14,9 @@
       <span class="todos__title">{{ title }}</span>
     </div>
     <div class="todos__item-btn-box">
-      <b-btn @click.native="deleteTodoHandler" :modifier="'delete'"
-        >Delete</b-btn
-      >
+      <b-btn @click.native="deleteTodoHandler" :modifier="'delete'">{{
+        $t("buttons.delete")
+      }}</b-btn>
     </div>
   </div>
 </template>

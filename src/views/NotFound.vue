@@ -1,5 +1,15 @@
 <template>
   <div class="not-found">
-    <h1>Page Not Found!</h1>
+    <b-heading>
+      {{ $t("pageHeadings.notFound") }}
+    </b-heading>
   </div>
 </template>
+
+<script>
+import BHeading from "../components/BHeading/BHeading.vue";
+export default {
+  components: { BHeading },
+  name: "NotFound",
+};
+</script>

@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <FixedNav :position="'top-center'">
-      <NavList :class="'fixed-nav__nav-list'" :links="getNavLinks" />
-    </FixedNav>
+    <fixed-nav :position="'top-right'">
+      <button @click="setLocale('ru')">русский</button> |
+      <button @click="setLocale('en')">английский</button>
+    </fixed-nav>
+    <fixed-nav :position="'top-center'">
+      <nav-list :class="'fixed-nav__nav-list'" />
+    </fixed-nav>
     <main class="main">
       <transition name="component-fade" mode="out-in">
         <router-view />
@@ -16,7 +20,6 @@ import { createNamespacedHelpers } from "vuex";
 import FixedNav from "./components/FixedNav/FixedNav";
 import NavList from "./components/NavList/NavList";
 
-const navlinksHelper = createNamespacedHelpers("navlinks");
 const todosHelper = createNamespacedHelpers("todos");
 const userHelper = createNamespacedHelpers("user");
 
@@ -27,12 +30,14 @@ export default {
     NavList,
   },
   computed: {
-    ...navlinksHelper.mapGetters(["getNavLinks"]),
     ...todosHelper.mapState({ todosCount: "todosCount" }),
   },
   methods: {
     ...todosHelper.mapActions(["fetchTodos"]),
     ...userHelper.mapActions(["fetchUserData"]),
+    setLocale(locale) {
+      this.$i18n.locale = locale;
+    },
   },
 
   async mounted() {

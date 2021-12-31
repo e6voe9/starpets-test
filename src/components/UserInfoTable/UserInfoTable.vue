@@ -1,20 +1,41 @@
 <template>
   <div class="user-info-table">
-    <user-info-table-row :heading="'Name'" :text="getUserData.name" />
-    <user-info-table-row :heading="'Username'" :text="getUserData.username" />
-    <user-info-table-row :heading="'Email'" :text="getUserData.email" />
     <user-info-table-row
-      :heading="'Street'"
+      :heading="$t('userDataTitles.name')"
+      :text="getUserData.name"
+    />
+    <user-info-table-row
+      :heading="$t('userDataTitles.username')"
+      :text="getUserData.username"
+    />
+    <user-info-table-row
+      :heading="$t('userDataTitles.email')"
+      :text="getUserData.email"
+    />
+    <user-info-table-row
+      :heading="$t('userDataTitles.street')"
       :text="getUserData.address.street"
     />
-    <user-info-table-row :heading="'Suite'" :text="getUserData.address.suite" />
-    <user-info-table-row :heading="'City'" :text="getUserData.address.city" />
     <user-info-table-row
-      :heading="'Zipcode'"
+      :heading="$t('userDataTitles.suite')"
+      :text="getUserData.address.suite"
+    />
+    <user-info-table-row
+      :heading="$t('userDataTitles.city')"
+      :text="getUserData.address.city"
+    />
+    <user-info-table-row
+      :heading="$t('userDataTitles.zipcode')"
       :text="getUserData.address.zipcode"
     />
-    <user-info-table-row :heading="'Phone'" :text="getUserData.phone" />
-    <user-info-table-row :heading="'Website'" :text="getUserData.website" />
+    <user-info-table-row
+      :heading="$t('userDataTitles.phone')"
+      :text="getUserData.phone"
+    />
+    <user-info-table-row
+      :heading="$t('userDataTitles.website')"
+      :text="getUserData.website"
+    />
   </div>
 </template>
 
@@ -34,9 +55,11 @@ export default {
 
 <style lang="scss">
 .user-info-table {
-  padding: 20px;
   width: 100%;
   text-align: left;
+  padding: 40px 30px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   &__row {
     width: 100%;
     display: flex;
@@ -50,12 +73,12 @@ export default {
   }
 
   &__heading {
-    width: 30%;
+    width: 40%;
     border-right: 2px solid #eee;
   }
 
   &__text {
-    width: 70%;
+    width: 60%;
     padding-left: 20px;
   }
 }

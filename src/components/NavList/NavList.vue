@@ -1,8 +1,13 @@
 <template>
   <ul class="nav-list">
-    <li class="nav-list__item" v-for="link in links" :key="link.id">
-      <router-link class="nav-list__link" :to="link.to" exact>{{
-        link.title
+    <li class="nav-list__item">
+      <router-link class="nav-list__link" to="/" exact>{{
+        $t("pageNames.home")
+      }}</router-link>
+    </li>
+    <li class="nav-list__item">
+      <router-link class="nav-list__link" to="/user" exact>{{
+        $t("pageNames.user")
       }}</router-link>
     </li>
   </ul>
@@ -11,9 +16,6 @@
 <script>
 export default {
   name: "NavList",
-  props: {
-    links: Array,
-  },
 };
 </script>
 

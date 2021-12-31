@@ -5,15 +5,15 @@
         <b-input
           @input.native="inputTodoHandler"
           :class="'todos__b-input'"
-          :placeholder="'Write your task'"
+          :placeholder="$t('todoInput.placeholder')"
           :value="getInputTodoValue"
         />
       </label>
-      <b-btn type="submit">Add</b-btn>
+      <b-btn type="submit">{{ $t("buttons.add") }}</b-btn>
     </form>
-    <b-btn v-if="todosCount > 1" @click.native="reverseTodos"
-      >Reverse List</b-btn
-    >
+    <b-btn v-if="todosCount > 1" @click.native="reverseTodos">{{
+      $t("buttons.reverseList")
+    }}</b-btn>
     <transition-group class="todos__list" name="list-complete" tag="div">
       <single-todo-item
         v-for="todo in getTodos"
