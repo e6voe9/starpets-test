@@ -2,7 +2,7 @@
   <button
     class="b-btn"
     :class="{
-      'b-btn--delete': modifier === 'delete',
+      [modif]: this.modifier,
     }"
   >
     <slot />
@@ -13,6 +13,11 @@
 export default {
   name: "BBtn",
   props: ["modifier"],
+  data() {
+    return {
+      modif: "b-btn--" + this.modifier,
+    };
+  },
 };
 </script>
 

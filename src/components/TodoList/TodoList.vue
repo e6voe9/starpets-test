@@ -21,7 +21,7 @@
         :title="todo.title"
         :key="todo.id"
         :id="todo.id"
-        :class="['list-complete-item']"
+        class="list-complete-item"
       />
     </transition-group>
   </div>
