@@ -17,7 +17,6 @@ export default {
   },
   getters: {
     getUserData(state) {
-      console.log(state.data);
       return state.data
     }
   }

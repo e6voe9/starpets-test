@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <fixed-nav :position="'top-right'">
+    <fixed-nav position="top-right">
       <b-btn @click.native="setLocale('ru')">русский</b-btn> |
       <b-btn @click.native="setLocale('en')">английский</b-btn>
     </fixed-nav>
-    <fixed-nav :position="'top-center'">
-      <nav-list :class="'fixed-nav__nav-list'" />
+    <fixed-nav position="top-center">
+      <nav-list class="fixed-nav__nav-list" />
     </fixed-nav>
     <main class="main">
       <transition name="component-fade" mode="out-in">
